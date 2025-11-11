@@ -3,24 +3,24 @@
 
 import datetime # Required for Task 6 to get the timestamp
 
-def run_calorie_tracker():
-    print("==================================================")
-    print("           Daily Calorie Tracker CLI              ")
-    print("==================================================")
+def cal_tracker():
+    print("---------------------------------------------------")
+    print("|          Daily Calorie Tracker CLI              |")
+    print("---------------------------------------------------")
     
-    meal_names = [] 
-    calorie_amounts = [] 
+    ml_names = [] 
+    cal_amnt = [] 
     
     # Get the daily calorie limit
     while True:
         try:
-            daily_limit = float(input("\nEnter your daily calorie limit (e.g., 2000): ")) #
-            if daily_limit > 0:
+             limit = float(input("\nEnter your daily calorie limit (e.g., 2000): ")) #
+            if limit > 0:
                 break
             else:
-                print("Limit must be a positive number.")
+                print("Please select a positive number.")
         except ValueError:
-            print("Invalid input. Please enter a number for the limit.")
+            print(" pls Enter a number ")
 
     # Ask the user how many meals to enter
     while True:
@@ -44,20 +44,20 @@ def run_calorie_tracker():
             try:
                 # Use input() and convert to float for calorie amount
                 calorie_input = input("Enter calorie amount for this meal: ")
-                calorie_amount = float(calorie_input)
-                calorie_amounts.append(calorie_amount)
+                cal_amnt = float(calorie_input)
+                calorie_amounts.append(cal_amnt)
                 break
             except ValueError:
                 print("Invalid input. Please enter a numerical value for calories.")
     
     
-    total_calories = sum(calorie_amounts)
-    average_calories = total_calories / len(calorie_amounts) if calorie_amounts else 0.0
+    total_calories = sum(cal_amnt)
+    average_calories = total_calories / len(cal_amnt) if cal_amnt else 0.0
 
     # Determine limit status
     limit_status = ""
     
-    if total_calories > daily_limit:
+    if total_calories > limit:
         limit_status = " WARNING: You have EXCEEDED your daily calorie limit!"
     else:
         limit_status = " Success: You are WITHIN your daily calorie limit."
@@ -69,7 +69,7 @@ def run_calorie_tracker():
     report_lines.append("\n==================================================")
     report_lines.append("              DAILY CALORIE REPORT                ")
     report_lines.append(f"Date/Time: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}") # For Task 6
-    report_lines.append(f"Daily Limit: {daily_limit} Calories")
+    report_lines.append(f"Daily Limit: {limit} Calories")
     report_lines.append("==================================================")
     
     # Header of the summary table
@@ -79,7 +79,7 @@ def run_calorie_tracker():
     for meal, calories in zip(meal_names, calorie_amounts):
         report_lines.append(f"{meal:<20}\t{calories:>10.2f}") 
 
-    report_lines.append("-" * 35)
+    report_lines.append("-" * 50)
 
     # Summary calculations
     report_lines.append(f"{'Total:':<20}\t{total_calories:>10.2f}")
@@ -97,7 +97,7 @@ def run_calorie_tracker():
     save_log = input("\nDo you want to save this session log to a file? (yes/no): ").lower()
     
     if save_log == 'yes':
-        filename = "calorie_log.txt"
+        filename = "cal_track.txt"
         try:
             with open(filename, "a") as file:
                 file.write("\n" + "\n".join(report_lines))
@@ -107,4 +107,5 @@ def run_calorie_tracker():
             print(f"\nError saving file: {e}")
 
 if __name__ == "__main__":
-    run_calorie_tracker()
+
+    cal_tracker()
