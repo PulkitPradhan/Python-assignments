@@ -5,6 +5,7 @@ import datetime # Required for Task 6 to get the timestamp
 
 def cal_tracker():
     print("---------------------------------------------------")
+    print("|                 Welcome to                      |")
     print("|          Daily Calorie Tracker CLI              |")
     print("---------------------------------------------------")
     
@@ -36,16 +37,16 @@ def cal_tracker():
     # Collect meal data
     for i in range(num_meals):
         print(f"\n--- Entering Meal {i + 1} of {num_meals} ---")
-        meal_name = input("Enter meal name (e.g., Breakfast, Lunch): ")
-        meal_names.append(meal_name)
+        ml_name = input("Enter meal name (e.g., Breakfast, Lunch): ")
+        ml_names.append(ml_name)
 
         # Calorie Amount Input and Conversion
         while True:
             try:
                 # Use input() and convert to float for calorie amount
                 calorie_input = input("Enter calorie amount for this meal: ")
-                cal_amnt = float(calorie_input)
-                calorie_amounts.append(cal_amnt)
+                calorie_amnt = float(calorie_input)
+                cal_amnt.append(calorie_amnt)
                 break
             except ValueError:
                 print("Invalid input. Please enter a numerical value for calories.")
@@ -109,3 +110,4 @@ def cal_tracker():
 if __name__ == "__main__":
 
     cal_tracker()
+
