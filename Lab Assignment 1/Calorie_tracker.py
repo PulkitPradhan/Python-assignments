@@ -15,10 +15,10 @@ def cal_tracker():
     # Get the daily calorie limit
     while True:
         try:
-             limit = float(input("\nEnter your daily calorie limit (e.g., 2000): ")) #
-            if limit > 0:
+           limit = float(input("\nEnter your daily calorie limit (e.g., 2000): ")) #
+           if limit > 0:
                 break
-            else:
+           else:
                 print("Please select a positive number.")
         except ValueError:
             print(" pls Enter a number ")
@@ -59,7 +59,7 @@ def cal_tracker():
     limit_status = ""
     
     if total_calories > limit:
-        limit_status = " WARNING: You have EXCEEDED your daily calorie limit!"
+        limit_status = " WARNING!! : You have EXCEEDED your daily calorie limit!"
     else:
         limit_status = " Success: You are WITHIN your daily calorie limit."
     
@@ -67,27 +67,27 @@ def cal_tracker():
 
     # Build the report string for printing and saving
     report_lines = []
-    report_lines.append("\n==================================================")
+    report_lines.append("\n----------------------------------------")
     report_lines.append("              DAILY CALORIE REPORT                ")
     report_lines.append(f"Date/Time: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}") # For Task 6
     report_lines.append(f"Daily Limit: {limit} Calories")
-    report_lines.append("==================================================")
+    report_lines.append("\n----------------------------------------")
     
     # Header of the summary table
     report_lines.append(f"{'Meal Name':<20}\t{'Calories':>10}")
-    report_lines.append("-" * 35)
+    report_lines.append("\n----------------------------------------")
 
-    for meal, calories in zip(meal_names, calorie_amounts):
+    for meal, calories in zip(ml_names, cal_amnt):
         report_lines.append(f"{meal:<20}\t{calories:>10.2f}") 
+        report_lines.append("\n----------------------------------------")
 
-    report_lines.append("-" * 50)
 
     # Summary calculations
     report_lines.append(f"{'Total:':<20}\t{total_calories:>10.2f}")
     report_lines.append(f"{'Average:':<20}\t{average_calories:>10.2f}")
-    report_lines.append("-" * 35)
+    report_lines.append("\n----------------------------------------")
     report_lines.append(f"Limit Status: {limit_status}")
-    report_lines.append("==================================================")
+    report_lines.append("\n----------------------------------------")
 
     # Print the report to the CLI
     for line in report_lines:
@@ -108,6 +108,4 @@ def cal_tracker():
             print(f"\nError saving file: {e}")
 
 if __name__ == "__main__":
-
     cal_tracker()
-
